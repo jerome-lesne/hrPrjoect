@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.1);
+    height: 80px;
+    backdrop-filter: blur(10px);
+}
+
+#logo {
+    width: 90px;
+}
+
+body {
+    background: url(../images/bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+main {
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome {
+    padding: 150px 80px;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}
+
+h2 {
+    font-family: "Archivo Black", sans-serif;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+#welcome p {
+    font-family: "Archivo Black", sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#getStarted {
+    font-family: "Archivo Black", sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#getStarted:hover {
+    background-color: #0056b3; /* Hover background color */
+}
+
+#companyForm {
+    color: white;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 50px 80px;
+    margin: 50px;
+}
+
+form :last-child {
+    display: flex;
+    justify-content: center;
+}
+
+#companyForm form div {
+    margin-bottom: 20px;
+}
+
+#companyForm form div label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#companyForm form div input[type="text"],
+#companyForm form div input[type="number"],
+#companyForm form div input[type="email"],
+#companyForm form div input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#companyForm form div input[type="submit"] {
+    width: auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#companyForm form div input[type="submit"]:hover {
+    background-color: #0056b3;
+}

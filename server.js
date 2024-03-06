@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const cors = require("cors");
+const homeRouter = require("./src/routes/homeRoute");
+const signinRouter = require("./src/routes/signinRoute");
 require("dotenv").config();
 
 const app = express();
@@ -18,6 +20,9 @@ app.use(
         saveUninitialized: true,
     }),
 );
+
+app.use(homeRouter);
+app.use(signinRouter);
 
 app.listen(process.env.PORT, (e) => {
     if (e) {
