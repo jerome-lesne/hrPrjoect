@@ -1,5 +1,5 @@
 <div id="companyForm">
-    <form action="" method="post">
+    <form action="/company" method="post">
         <div>
             
             <h2>Compagny Registration</h2>
@@ -7,22 +7,37 @@
         <div>
             <label for="Name">Company Name</label>
             <input type="text" name="name" id="companyName" value="">
+            {% if error %}
+                <p>{{error.name}}</p>
+            {% endif %}
         </div>
         <div>
             <label for="Siret">Siret</label>
             <input type="number" name="siret" id="companySiret" value="">
+            {% if error %}
+                <p>{{error.siret}}</p>
+            {% endif %}
         </div>
         <div>
             <label for="ceo">CEO Name</label>
             <input type="text" name="ceo" id="companyCEO" value="">
+            {% if error %}
+                <p>{{error.ceo}}</p>
+            {% endif %}
         </div>
         <div>
             <label for="email">Email</label>
             <input type="email" name="mail" id="companyMail" value="">
+            {% if error %}
+                <p>{{error.mail}}</p>
+            {% endif %}
         </div>
         <div>
             <label for="password">Password</label>
             <input type="password" name="password" value="">
+            {% if error %}
+                <p>{{error.password}}</p>
+            {% endif %}
         </div>
         <div>
             <label for="confirmPassword">Confirm Password</label>

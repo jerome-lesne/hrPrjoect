@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const companySchema = new mongoose.Schema({
     name: {
@@ -16,6 +17,12 @@ const companySchema = new mongoose.Schema({
     mail: {
         type: String,
         required: [true, "Email is required"],
+        validate: {
+            validator: (v) => {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/g.test(v);
+            },
+            message: "Please insert a valid Email",
+        },
     },
     password: {
         type: String,
@@ -23,5 +30,18 @@ const companySchema = new mongoose.Schema({
     },
 });
 
-const companyModel = mongoose.model("company", userSchema);
+companySchema.pre("save", function (next) {
+    if (!this.isModified("password")) {
+        return next();
+    }
+    bcrypt.hash(this.password, 10, (error, hash) => {
+        if (error) {
+            return next(error);
+        }
+        this.password = hash;
+        next();
+    });
+});
+
+const companyModel = mongoose.model("company", companySchema);
 module.exports = companyModel;

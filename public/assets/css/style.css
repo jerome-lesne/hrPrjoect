@@ -93,7 +93,7 @@ h2 {
     margin: 50px;
 }
 
-form :last-child {
+#companyForm form :last-child {
     display: flex;
     justify-content: center;
 }
@@ -130,5 +130,61 @@ form :last-child {
 }
 
 #companyForm form div input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#companyForm p {
+    color: red;
+}
+
+/* LOGIN */
+
+#loginContainer {
+    color: white;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 50px 80px;
+    margin: 50px;
+}
+
+#loginContainer form div input[type="text"],
+#loginContainer form div input[type="password"] {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#loginContainer form :last-child {
+    display: flex;
+    justify-content: center;
+}
+
+#loginContainer form div {
+    margin-bottom: 20px;
+}
+
+#loginContainer form div label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#loginContainer form div input[type="submit"] {
+    width: auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#loginContainer form div input[type="submit"]:hover {
     background-color: #0056b3;
 }
