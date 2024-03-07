@@ -188,3 +188,7 @@ h2 {
 #loginContainer form div input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+#loginContainer form p {
+    color: red;
+}

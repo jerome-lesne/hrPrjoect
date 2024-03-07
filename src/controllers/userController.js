@@ -1,4 +1,5 @@
 const companyModel = require("../models/companyModel");
+const bcrypt = require("bcrypt");
 
 const companySet = async (req, res) => {
     try {
@@ -13,4 +14,24 @@ const companySet = async (req, res) => {
     }
 };
 
-module.exports = companySet;
+const userConnect = async (req, res) => {
+    try {
+        const company = await companyModel.findOne({ mail: req.body.mail });
+        if (company) {
+            if (await bcrypt.compare(req.body.password, company.password)) {
+                req.session.company = company;
+                res.redirect("/dashboard");
+            } else {
+                throw { password: "Wrong password" };
+            }
+        } else {
+            throw { mail: "email not found" };
+        }
+    } catch (e) {
+        res.render("login/index.html.twig", {
+            error: e,
+        });
+    }
+};
+
+module.exports = { companySet, userConnect };

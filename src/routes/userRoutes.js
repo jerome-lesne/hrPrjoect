@@ -1,7 +1,7 @@
 const userRouter = require("express").Router();
-const companySet = require("../controllers/userController");
+const { companySet, userConnect } = require("../controllers/userController");
 
 userRouter.post("/company", companySet);
-userRouter.post("/connect");
+userRouter.post("/connect", userConnect);
 
 module.exports = userRouter;

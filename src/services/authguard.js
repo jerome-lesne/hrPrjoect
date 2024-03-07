@@ -2,9 +2,9 @@ const companyModel = require("../models/companyModel");
 
 const authguard = async (req, res, next) => {
     try {
-        if (req.session.user) {
+        if (req.session.company) {
             let company = await companyModel.findOne({
-                email: req.session.user.email,
+                email: req.session.company.email,
             });
             if (company) {
                 return next();

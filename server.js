@@ -23,7 +23,7 @@ app.use(
 );
 
 app.use(pagesRouter);
-ppp.use(userRouter);
+app.use(userRouter);
 
 app.listen(process.env.PORT, (e) => {
     if (e) {
