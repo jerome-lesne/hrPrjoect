@@ -1,4 +1,5 @@
 const companyModel = require("../models/companyModel");
+const employeeModel = require("../models/employeeModel");
 
 const homeRender = (req, res) => {
     try {
@@ -27,7 +28,10 @@ const loginRender = async (req, res) => {
 const dashboardRender = async (req, res) => {
     try {
         res.render("dashboard/index.html.twig", {
-            company: await companyModel.findById(req.session.company._id),
+            company: await companyModel
+                .findById(req.session.company._id)
+                .populate("employees"),
+            // employees: await companyModel.findById(req.session.company._id),
         });
     } catch (e) {
         res.send(e);
