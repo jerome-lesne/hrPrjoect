@@ -8,7 +8,7 @@ const companySet = async (req, res) => {
         res.redirect("/login");
     } catch (e) {
         console.log(e.errors);
-        res.render("signin/index.html.twig", {
+        res.render("signup/index.html.twig", {
             error: e.errors,
         });
     }

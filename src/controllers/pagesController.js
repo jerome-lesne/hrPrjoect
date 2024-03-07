@@ -6,9 +6,9 @@ const homeRender = (req, res) => {
     }
 };
 
-const signinRender = (req, res) => {
+const signupRender = (req, res) => {
     try {
-        res.render("signin/index.html.twig", {});
+        res.render("signup/index.html.twig", {});
     } catch (e) {
         res.json(e);
     }
@@ -30,4 +30,4 @@ const dashboardRender = async (req, res) => {
     }
 };
 
-module.exports = { homeRender, signinRender, loginRender, dashboardRender };
+module.exports = { homeRender, signupRender, loginRender, dashboardRender };
