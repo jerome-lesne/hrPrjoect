@@ -28,9 +28,15 @@ const companySchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"],
     },
+    employees: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "employees",
+        },
+    ],
 });
 
-companySchema.pre("save", function (next) {
+companySchema.pre("save", function(next) {
     if (!this.isModified("password")) {
         return next();
     }

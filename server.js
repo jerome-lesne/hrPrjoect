@@ -4,6 +4,7 @@ const session = require("express-session");
 const cors = require("cors");
 const pagesRouter = require("./src/routes/pagesRoutes");
 const userRouter = require("./src/routes/userRoutes");
+const employeeRouter = require("./src/routes/employeeRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(
 
 app.use(pagesRouter);
 app.use(userRouter);
+app.use(employeeRouter);
 
 app.listen(process.env.PORT, (e) => {
     if (e) {

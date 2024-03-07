@@ -34,4 +34,20 @@ const dashboardRender = async (req, res) => {
     }
 };
 
-module.exports = { homeRender, signupRender, loginRender, dashboardRender };
+const addEmployeeRender = async (req, res) => {
+    try {
+        res.render("addEmployee/index.html.twig", {
+            company: await companyModel.findById(req.session.company._id),
+        });
+    } catch (e) {
+        res.send(e);
+    }
+};
+
+module.exports = {
+    homeRender,
+    signupRender,
+    loginRender,
+    dashboardRender,
+    addEmployeeRender,
+};
