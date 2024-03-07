@@ -238,7 +238,7 @@ h2 {
     width: 100%;
     justify-content: space-between;
     padding: 10px;
-    background: rgba(172, 96, 227, 0.1);
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(172, 96, 227, 0.3);
@@ -272,6 +272,7 @@ h2 {
 .dropdown {
     position: relative;
     width: 20%;
+    z-index: 99;
 }
 
 .dropdown-content {
@@ -283,7 +284,7 @@ h2 {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 99;
 }
 
 .dropdown-content a {
@@ -367,4 +368,71 @@ h2 {
 
 #submitBtn:hover {
     background-color: #0056b3;
+}
+
+/* EMPLOYEES */
+#employeesContainer {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+#employee {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 320px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+
+#employeePic {
+    flex: 1.25;
+    display: flex;
+    align-items: center;
+}
+
+#employee img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+#employeeInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#employeeInfo h3 {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: underline;
+}
+
+#employeeInfo p {
+    margin: 0;
+    font-size: 14px;
+    color: #f9f9f9;
+}
+
+#employeeActions img {
+    width: 32px;
+    object-fit: contain;
+}
+
+#employeeActions div {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
 }

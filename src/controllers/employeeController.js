@@ -7,6 +7,7 @@ const setEmployee = async (req, res) => {
         company = companyModel.findOne({ _id: req.params.idCompany });
         if (company) {
             const newEmployee = new employeeModel(req.body);
+            newEmployee.blames = 0;
             let imgPath = req.file.path;
             imgPath = imgPath.substring(imgPath.indexOf("/"));
             newEmployee.image = imgPath;
