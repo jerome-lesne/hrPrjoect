@@ -2,3 +2,26 @@
 <div>
     <img src="./assets/images/logo.png" id="logo" alt="logo">
 </div>
+<nav>
+    <ul>
+        {% if company.id %}
+            <li>
+                <a href="/dashboard">Dashboard</a>
+            </li>
+            <li>
+                <a href="/add-employee">Add Employee</a>
+            </li>
+            <li>
+                <a href="/role">Edit Roles</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="/signup">SignUp</a>
+            </li>
+            <li>
+                <a href="/login">LogIn</a>
+            </li>
+        {% endif %}
+        
+    </ul>
+</nav>

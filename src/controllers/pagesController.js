@@ -1,3 +1,5 @@
+const companyModel = require("../models/companyModel");
+
 const homeRender = (req, res) => {
     try {
         res.render("home/index.html.twig", {});
@@ -24,7 +26,9 @@ const loginRender = async (req, res) => {
 
 const dashboardRender = async (req, res) => {
     try {
-        res.render("dashboard/index.html.twig");
+        res.render("dashboard/index.html.twig", {
+            company: await companyModel.findById(req.session.company._id),
+        });
     } catch (e) {
         res.send(e);
     }
