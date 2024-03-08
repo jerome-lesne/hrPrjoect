@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const setEmployee = async (req, res) => {
     try {
-        company = companyModel.findOne({ _id: req.params.idCompany });
+        const company = companyModel.findOne({ _id: req.params.idCompany });
         if (company) {
             const newEmployee = new employeeModel(req.body);
             newEmployee.blames = 0;
@@ -28,4 +28,38 @@ const setEmployee = async (req, res) => {
     }
 };
 
-module.exports = setEmployee;
+const blameEmployee = async (req, res) => {
+    try {
+        const employee = await employeeModel.findOne({ _id: req.params.id });
+        if (employee.blames >= 3) {
+            await employeeModel.deleteOne({ _id: req.params.id });
+            fs.unlink("public" + employee.image, (err) => {
+                err ? console.log(err) : console.log("project image deleted");
+            });
+        } else {
+            const addBlame = employee.blames + 1;
+            await employeeModel.updateOne(
+                { _id: req.params.id },
+                { blames: addBlame },
+            );
+        }
+        res.redirect("/dashboard");
+    } catch (e) {
+        res.send(e);
+    }
+};
+
+const deleteEmployee = async (req, res) => {
+    try {
+        const employee = await employeeModel.findOne({ _id: req.params.id });
+        await employeeModel.deleteOne({ _id: req.params.id });
+        fs.unlink("public" + employee.image, (err) => {
+            err ? console.log(err) : console.log("project image deleted");
+        });
+        res.redirect("/dashboard");
+    } catch (e) {
+        res.send(e);
+    }
+};
+
+module.exports = { setEmployee, blameEmployee, deleteEmployee };

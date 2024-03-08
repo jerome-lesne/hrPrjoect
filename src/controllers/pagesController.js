@@ -31,7 +31,6 @@ const dashboardRender = async (req, res) => {
             company: await companyModel
                 .findById(req.session.company._id)
                 .populate("employees"),
-            // employees: await companyModel.findById(req.session.company._id),
         });
     } catch (e) {
         res.send(e);
