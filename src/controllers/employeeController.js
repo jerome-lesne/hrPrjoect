@@ -84,8 +84,14 @@ const updateEmployee = async (req, res) => {
         let imgPath = req.file.path;
         imgPath = imgPath.substring(imgPath.indexOf("/"));
         data.image = imgPath;
-        console.log(imgPath);
-        console.log(data);
+        const employee = await employeeModel.findOne({
+            _id: req.params.id,
+        });
+        fs.unlink("public" + employee.image, (err) => {
+            err
+                ? console.log(err)
+                : console.log(`Employee id: ${employee.id}, image deleted`);
+        });
         await employeeModel.updateOne({ _id: req.params.id }, data);
         res.redirect("/dashboard");
     } catch (e) {
