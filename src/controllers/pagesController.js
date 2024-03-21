@@ -58,6 +58,7 @@ const addEmployeeRender = async (req, res) => {
     try {
         res.render("addEmployee/index.html.twig", {
             company: await companyModel.findById(req.session.company._id),
+            employees: "employee",
         });
     } catch (e) {
         res.send(e);
