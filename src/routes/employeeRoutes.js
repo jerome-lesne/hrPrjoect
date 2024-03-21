@@ -4,8 +4,8 @@ const {
     blameEmployee,
     deleteEmployee,
     updateEmployee,
+    roleFilter,
 } = require("../controllers/employeeController");
-const { dashboardRender } = require("../controllers/pagesController");
 const authguard = require("../services/authguard");
 const upload = require("../services/multer");
 
@@ -23,6 +23,6 @@ employeeRouter.post(
     upload.single("image"),
     updateEmployee,
 );
-employeeRouter.get("/role-filter", authguard, dashboardRender);
+employeeRouter.get("/role-filter/:role", authguard, roleFilter);
 
 module.exports = employeeRouter;

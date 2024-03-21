@@ -5,8 +5,9 @@
     <div class="dropdown">
         <button class="dropbtn">Roles</button>
         <div class="dropdown-content">
+            <a href="/dashboard">--Reset Filter--</a>
             {% for role in roles %}
-                <a href="#">{{role}}</a>
+            <a href="/role-filter/{{role}}">{{role}}</a>
             {% endfor %}
         </div>
     </div>

@@ -31,7 +31,7 @@ const dashboardRender = async (req, res) => {
             .findById(req.session.company._id)
             .populate("employees");
         res.render("dashboard/index.html.twig", {
-            company: company,
+            employees: company.employees,
             roles: Array.from(
                 new Set(company.employees.map((employee) => employee.role)),
             ),

@@ -100,10 +100,29 @@ const updateEmployee = async (req, res) => {
     }
 };
 
-// const roleFilter = async (req, res) => {
-//     try {
-//         const employee = await employeeModel.find({ role: req.params.role });
-//     } catch (e) {}
-// };
+const roleFilter = async (req, res) => {
+    try {
+        const company = await companyModel
+            .findById(req.session.company._id)
+            .populate("employees");
+        const companyFilter = await companyModel
+            .findById(req.session.company._id)
+            .populate({ path: "employees", match: { role: req.params.role } });
+        res.render("dashboard/index.html.twig", {
+            employees: companyFilter.employees,
+            roles: Array.from(
+                new Set(company.employees.map((employee) => employee.role)),
+            ),
+        });
+    } catch (e) {
+        res.send(e);
+    }
+};
 
-module.exports = { setEmployee, blameEmployee, deleteEmployee, updateEmployee };
+module.exports = {
+    setEmployee,
+    blameEmployee,
+    deleteEmployee,
+    updateEmployee,
+    roleFilter,
+};
