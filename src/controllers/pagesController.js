@@ -26,10 +26,20 @@ const loginRender = async (req, res) => {
 };
 
 const dashboardRender = async (req, res) => {
+    let company;
     try {
-        const company = await companyModel
-            .findById(req.session.company._id)
-            .populate("employees");
+        if (req.query.search) {
+            company = await companyModel
+                .findById(req.session.company._id)
+                .populate({
+                    path: "employees",
+                    match: { name: req.query.search },
+                });
+        } else {
+            company = await companyModel
+                .findById(req.session.company._id)
+                .populate("employees");
+        }
         res.render("dashboard/index.html.twig", {
             employees: company.employees,
             roles: Array.from(
@@ -37,6 +47,7 @@ const dashboardRender = async (req, res) => {
             ),
         });
     } catch (e) {
+        console.log(e);
         res.send(e);
     }
 };
