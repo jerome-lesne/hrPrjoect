@@ -29,11 +29,13 @@ const dashboardRender = async (req, res) => {
     let company;
     try {
         if (req.query.search) {
+            const searchTerm = req.query.search;
+            const regex = new RegExp(searchTerm, "i");
             company = await companyModel
                 .findById(req.session.company._id)
                 .populate({
                     path: "employees",
-                    match: { name: req.query.search },
+                    match: { name: { $regex: regex } },
                 });
         } else {
             company = await companyModel
