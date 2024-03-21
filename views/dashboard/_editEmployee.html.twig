@@ -1,7 +1,8 @@
-<div id="addEmployeeForm">
-    <form action="/employee" enctype="multipart/form-data" method="post">
+<div id="editEmployeeWindow" class="hidden">
+    <button id="closeBtn">&times;</button>
+    <form enctype="multipart/form-data" method="post">
         <div>
-            <h2>Add New Employee</h2>
+            <h2>Edit Employee</h2>
         </div>
         <div>
             <label for="image">Picture</label>
@@ -20,6 +21,13 @@
         <div>
             <label for="role">Role</label>
             <input type="text" name="role" id="employeeRole" value="">
+            {% if error %}
+                <p>error</p>
+            {% endif %}
+        </div>
+        <div>
+            <label for="blame">Blame</label>
+            <input type="number" name="blame" id="employeeBlane" value="">
             {% if error %}
                 <p>error</p>
             {% endif %}

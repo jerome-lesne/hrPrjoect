@@ -27,10 +27,14 @@ const loginRender = async (req, res) => {
 
 const dashboardRender = async (req, res) => {
     try {
+        const company = await companyModel
+            .findById(req.session.company._id)
+            .populate("employees");
         res.render("dashboard/index.html.twig", {
-            company: await companyModel
-                .findById(req.session.company._id)
-                .populate("employees"),
+            company: company,
+            roles: Array.from(
+                new Set(company.employees.map((employee) => employee.role)),
+            ),
         });
     } catch (e) {
         res.send(e);

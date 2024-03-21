@@ -4,8 +4,8 @@ const fs = require("fs");
 
 const setEmployee = async (req, res) => {
     try {
-        const company = companyModel.findOne({ _id: req.params.idCompany });
-        if (company) {
+        const companyId = req.session.company._id;
+        if (companyId) {
             const newEmployee = new employeeModel(req.body);
             newEmployee.blames = 0;
             let imgPath = req.file.path;
@@ -14,10 +14,10 @@ const setEmployee = async (req, res) => {
             newEmployee.validateSync();
             await newEmployee.save();
             await companyModel.updateOne(
-                { _id: req.params.idCompany },
+                { _id: companyId },
                 { $push: { employees: newEmployee.id } },
             );
-            res.redirect("/add-employee");
+            res.redirect("/dashboard");
         } else {
             res.json("company not found");
         }
@@ -51,15 +51,53 @@ const blameEmployee = async (req, res) => {
 
 const deleteEmployee = async (req, res) => {
     try {
-        const employee = await employeeModel.findOne({ _id: req.params.id });
-        await employeeModel.deleteOne({ _id: req.params.id });
-        fs.unlink("public" + employee.image, (err) => {
-            err ? console.log(err) : console.log("project image deleted");
+        const company = await companyModel.findOne({
+            employees: req.params.id,
         });
-        res.redirect("/dashboard");
+        if (company) {
+            await companyModel.updateOne(
+                { employees: req.params.id },
+                { $pull: { employees: req.params.id } },
+            );
+            const employee = await employeeModel.findOne({
+                _id: req.params.id,
+            });
+            fs.unlink("public" + employee.image, (err) => {
+                err
+                    ? console.log(err)
+                    : console.log(`Employee id: ${employee.id}, image deleted`);
+            });
+            await employeeModel.deleteOne({ _id: req.params.id });
+            console.log(`Employee id: ${employee.id} deleted succesfully`);
+            res.redirect("/dashboard");
+        } else {
+            res.json("company not found");
+        }
     } catch (e) {
         res.send(e);
     }
 };
 
-module.exports = { setEmployee, blameEmployee, deleteEmployee };
+const updateEmployee = async (req, res) => {
+    try {
+        let data = req.body;
+        let imgPath = req.file.path;
+        imgPath = imgPath.substring(imgPath.indexOf("/"));
+        data.image = imgPath;
+        console.log(imgPath);
+        console.log(data);
+        await employeeModel.updateOne({ _id: req.params.id }, data);
+        res.redirect("/dashboard");
+    } catch (e) {
+        console.log("error");
+        res.send(e);
+    }
+};
+
+// const roleFilter = async (req, res) => {
+//     try {
+//         const employee = await employeeModel.find({ role: req.params.role });
+//     } catch (e) {}
+// };
+
+module.exports = { setEmployee, blameEmployee, deleteEmployee, updateEmployee };

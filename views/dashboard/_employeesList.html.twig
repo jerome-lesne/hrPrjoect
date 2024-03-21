@@ -1,10 +1,11 @@
 <div id="employeesContainer">
     {% for employee in company.employees %}
-    <div id="employee">
-        <div id="employeePic">
+    {% if employee %}
+    <div class="employee">
+        <div class="employeePic">
             <img src="{{employee.image}}" alt="Employee Picture">
         </div>
-        <div id="employeeInfo">
+        <div class="employeeInfo" id={{employee.id}}>
             <div>
                 <h3>Name</h3>
                 <p>{{employee.name}}</p>
@@ -17,15 +18,18 @@
                 <h3>Blames</h3>
                 <p>{{employee.blames}}</p>
             </div>
-            <div id="employeeActions">
+            <div class="employeeActions">
                 <h3>Actions</h3>
                 <div>
-                    <a href="#"><img src="/assets/images/edit.png" alt=""></a>
+                    <a href="#" class="editEmployee" id={{employee.id}}><img src="/assets/images/edit.png" alt="" ></a>
                     <a href="/blame/{{employee._id}}"><img src="/assets/images/blame.png" alt=""></a>
                     <a href="/delete-employee/{{employee._id}}"><img src="/assets/images/delete.png" alt=""></a>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
+    {% else %}
+    <p>No employee</p>
     {% endfor %}
 </div>
