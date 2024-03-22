@@ -3,7 +3,11 @@ const employeeModel = require("../models/employeeModel");
 
 const homeRender = (req, res) => {
     try {
-        res.render("home/index.html.twig", {});
+        if (req.session.company) {
+            res.redirect("/dashboard");
+        } else {
+            res.render("home/index.html.twig", {});
+        }
     } catch (e) {
         res.json(e);
     }
@@ -11,7 +15,11 @@ const homeRender = (req, res) => {
 
 const signupRender = (req, res) => {
     try {
-        res.render("signup/index.html.twig", {});
+        if (req.session.company) {
+            res.redirect("/dashboard");
+        } else {
+            res.render("signup/index.html.twig", {});
+        }
     } catch (e) {
         res.json(e);
     }
@@ -19,7 +27,11 @@ const signupRender = (req, res) => {
 
 const loginRender = async (req, res) => {
     try {
-        res.render("login/index.html.twig");
+        if (req.session.company) {
+            res.redirect("/dashboard");
+        } else {
+            res.render("login/index.html.twig");
+        }
     } catch (e) {
         res.send(e);
     }
