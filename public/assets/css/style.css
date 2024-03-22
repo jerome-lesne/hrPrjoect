@@ -300,6 +300,12 @@ h2 {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+.dropdown-content p {
+    color: white;
+    font-weight: bold;
+    padding: 12px 16px;
+}
+
 .dropdown-content a {
     color: white;
     padding: 12px 16px;
@@ -309,6 +315,10 @@ h2 {
 
 .dropdown-content a:hover {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+#disconnect {
+    color: red;
 }
 
 .dropdown:hover .dropdown-content {

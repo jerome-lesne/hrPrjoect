@@ -34,4 +34,13 @@ const userConnect = async (req, res) => {
     }
 };
 
-module.exports = { companySet, userConnect };
+const userDisconnect = async (req, res) => {
+    try {
+        req.session.destroy();
+        res.redirect("/login");
+    } catch (e) {
+        res.json(e);
+    }
+};
+
+module.exports = { companySet, userConnect, userDisconnect };

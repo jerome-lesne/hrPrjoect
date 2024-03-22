@@ -59,6 +59,7 @@ const dashboardRender = async (req, res) => {
             roles: Array.from(
                 new Set(company.employees.map((employee) => employee.role)),
             ),
+            company: await companyModel.findById(req.session.company._id),
         });
     } catch (e) {
         console.log(e);
