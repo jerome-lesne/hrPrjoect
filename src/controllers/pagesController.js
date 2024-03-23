@@ -74,6 +74,7 @@ const addEmployeeRender = async (req, res) => {
             .findById(req.session.company._id)
             .populate("employees");
         res.render("addEmployee/index.html.twig", {
+            company: company,
             authguard: true,
             roles: Array.from(
                 new Set(company.employees.map((employee) => employee.role)),
