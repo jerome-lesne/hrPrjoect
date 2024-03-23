@@ -31,7 +31,37 @@
                 <p>{{error.mail}}</p>
             {% endif %}
         </div>
-            <input id="submitBtn" type="submit" value="Submit" />
+            <input class="submitBtn" type="submit" value="Submit" />
+        </div>
+    </form>
+    </form>
+</div>
+
+<div class="companyForm">
+    <form action="/update-company" method="post">
+        <div>
+            <h2>Password update</h2>
+        </div>
+        <div>
+            <label for="password">Current Password</label>
+            <input type="password" name="currentPassword" value="">
+            {% if error %}
+                <p>{{error.password}}</p>
+            {% endif %}
+        </div>
+        <div>
+            <label for="password">New Password</label>
+            <input type="password" name="password" value="">
+            {% if error %}
+                <p>{{error.password}}</p>
+            {% endif %}
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" value="">
+        </div>
+        <div>
+            <input class="submitBtn" type="submit" value="Submit" />
         </div>
     </form>
     </form>

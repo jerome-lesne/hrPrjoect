@@ -3,13 +3,17 @@ const bcrypt = require("bcrypt");
 
 const companySet = async (req, res) => {
     try {
-        const company = new companyModel(req.body);
-        await company.save();
-        res.redirect("/login");
+        if (req.body.password == req.body.confirmPassword) {
+            const company = new companyModel(req.body);
+            await company.save();
+            res.redirect("/login");
+        } else {
+            throw { confirmPassword: "Passwords doesn't match" };
+        }
     } catch (e) {
-        console.log(e.errors);
+        console.log(e);
         res.render("signup/index.html.twig", {
-            error: e.errors,
+            error: e,
         });
     }
 };

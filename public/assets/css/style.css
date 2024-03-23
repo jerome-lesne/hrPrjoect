@@ -69,7 +69,6 @@ main {
     height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -162,7 +161,7 @@ h2 {
 }
 
 .companyForm form div input[type="submit"] {
-    width: auto;
+    width: 100%;
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -370,7 +369,7 @@ h2 {
 
 #addEmployeeForm form div input[type="submit"],
 #addEmployeeForm form div input[type="file"] {
-    width: auto;
+    width: 100%;
     padding: 10px 20px;
     color: #fff;
     border: none;
@@ -383,7 +382,7 @@ h2 {
     justify-content: center;
 }
 
-#submitBtn {
+.submitBtn {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -393,7 +392,7 @@ h2 {
     cursor: pointer;
 }
 
-#submitBtn:hover {
+.submitBtn:hover {
     background-color: #0056b3;
 }
 
