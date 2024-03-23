@@ -70,9 +70,14 @@ const dashboardRender = async (req, res) => {
 
 const addEmployeeRender = async (req, res) => {
     try {
+        const company = await companyModel
+            .findById(req.session.company._id)
+            .populate("employees");
         res.render("addEmployee/index.html.twig", {
-            company: await companyModel.findById(req.session.company._id),
             authguard: true,
+            roles: Array.from(
+                new Set(company.employees.map((employee) => employee.role)),
+            ),
         });
     } catch (e) {
         res.send(e);

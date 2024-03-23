@@ -32,10 +32,12 @@ const blameEmployee = async (req, res) => {
     try {
         const employee = await employeeModel.findOne({ _id: req.params.id });
         if (employee.blames >= 3) {
+            await companyModel.updateOne(
+                { employees: req.params.id },
+                { $pull: { employees: req.params.id } },
+            );
             await employeeModel.deleteOne({ _id: req.params.id });
-            fs.unlink("public" + employee.image, (err) => {
-                err ? console.log(err) : console.log("project image deleted");
-            });
+            fs.unlink("public" + employee.image, (err) => {});
         } else {
             const addBlame = employee.blames + 1;
             await employeeModel.updateOne(

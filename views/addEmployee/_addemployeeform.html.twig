@@ -19,7 +19,12 @@
         </div>
         <div>
             <label for="role">Role</label>
-            <input type="text" name="role" id="employeeRole" value="">
+            <input type="text" name="role" id="employeeRole" list="roleSuggestions" value="">
+            <datalist id="roleSuggestions">
+                {% for role in roles %}
+                  <option value="{{ role }}">
+                {% endfor %}
+            </datalist>
             {% if error %}
                 <p>error</p>
             {% endif %}
