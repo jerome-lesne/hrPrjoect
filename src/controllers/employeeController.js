@@ -19,7 +19,7 @@ const setEmployee = async (req, res) => {
             );
             res.redirect("/dashboard");
         } else {
-            res.json("company not found");
+            res.redirect("/dashboard");
         }
     } catch (e) {
         res.render("addEmployee/index.html.twig", {
@@ -113,6 +113,7 @@ const roleFilter = async (req, res) => {
             roles: Array.from(
                 new Set(company.employees.map((employee) => employee.role)),
             ),
+            authguard: true,
         });
     } catch (e) {
         res.send(e);

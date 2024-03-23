@@ -60,6 +60,7 @@ const dashboardRender = async (req, res) => {
                 new Set(company.employees.map((employee) => employee.role)),
             ),
             company: await companyModel.findById(req.session.company._id),
+            authguard: true,
         });
     } catch (e) {
         console.log(e);
@@ -71,10 +72,21 @@ const addEmployeeRender = async (req, res) => {
     try {
         res.render("addEmployee/index.html.twig", {
             company: await companyModel.findById(req.session.company._id),
-            employees: "employee",
+            authguard: true,
         });
     } catch (e) {
         res.send(e);
+    }
+};
+
+const companyEditRender = async (req, res) => {
+    try {
+        res.render("editCompany/index.html.twig", {
+            company: await companyModel.findById(req.session.company._id),
+            authguard: true,
+        });
+    } catch (e) {
+        console.log(e.errors);
     }
 };
 
@@ -84,4 +96,5 @@ module.exports = {
     loginRender,
     dashboardRender,
     addEmployeeRender,
+    companyEditRender,
 };

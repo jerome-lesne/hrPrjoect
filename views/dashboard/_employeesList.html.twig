@@ -22,7 +22,12 @@
                 <h3>Actions</h3>
                 <div>
                     <a href="#" class="editEmployee" id={{employee.id}}><img src="/assets/images/edit.png" alt="" ></a>
+                    {% if employee.name == "Chuck Norris" %}
+                    <a href="#" onclick="alert('We do not blame Chuck Norris')"><img src="/assets/images/blame.png" alt=""></a>
+                    {% else %}
                     <a href="/blame/{{employee._id}}"><img src="/assets/images/blame.png" alt=""></a>
+                    {% endif %}
+                    
                     <a href="/delete-employee/{{employee._id}}"><img src="/assets/images/delete.png" alt=""></a>
                 </div>
             </div>

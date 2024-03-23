@@ -14,6 +14,22 @@ const companySet = async (req, res) => {
     }
 };
 
+const companyEdit = async (req, res) => {
+    try {
+        await companyModel.updateOne(
+            { _id: req.session.company._id },
+            req.body,
+        );
+        res.redirect("/dashboard");
+    } catch (e) {
+        res.render("editCompany/index.html.twig", {
+            company: await companyModel.findById(req.session.company._id),
+            authguard: true,
+            error: e.errors,
+        });
+    }
+};
+
 const userConnect = async (req, res) => {
     try {
         const company = await companyModel.findOne({ mail: req.body.mail });
@@ -43,4 +59,4 @@ const userDisconnect = async (req, res) => {
     }
 };
 
-module.exports = { companySet, userConnect, userDisconnect };
+module.exports = { companySet, userConnect, userDisconnect, companyEdit };
