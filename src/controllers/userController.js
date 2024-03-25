@@ -61,9 +61,21 @@ const passwordReset = async (req, res) => {
                     { password: req.body.password },
                     { runValidators: true },
                 );
+                req.session.destroy();
+                res.redirect("/login");
+            } else {
+                throw { confirmPassword: "Passwords doesn't match" };
             }
+        } else {
+            throw { currentPassword: "Current password error" };
         }
-    } catch (e) {}
+    } catch (e) {
+        res.render("editCompany/index.html.twig", {
+            company: await companyModel.findById(req.session.company._id),
+            authguard: true,
+            error: e,
+        });
+    }
 };
 
 const userConnect = async (req, res) => {

@@ -50,16 +50,19 @@ companySchema.pre("save", function (next) {
 });
 
 companySchema.pre("updateOne", function (next) {
-    if (!this.isModified("password")) {
-        return next();
-    }
-    bcrypt.hash(this.password, 10, (error, hash) => {
-        if (error) {
-            return next(error);
+    const update = this.getUpdate();
+
+    if (update.password) {
+        try {
+            const hash = bcrypt.hashSync(update.password, 10);
+            this.set("password", hash);
+            next();
+        } catch (err) {
+            return next(err);
         }
-        this.password = hash;
+    } else {
         next();
-    });
+    }
 });
 
 const companyModel = mongoose.model("company", companySchema);
