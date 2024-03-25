@@ -5,7 +5,7 @@
         </div>
         <div>
             <label for="image">Picture</label>
-            <input type="file" name="image" id="employeeImage" value="">
+            <input type="file" name="image" id="employeeImage" value="" required>
             {% if error %}
             <p>{{error.errorImage}}</p>
             {% endif %}

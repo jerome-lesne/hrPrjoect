@@ -27,6 +27,7 @@ const setEmployee = async (req, res) => {
             error: e,
             errorMulter: req.errorMulter,
             authguard: true,
+            company: await companyModel.findById(req.session.company._id),
         });
     }
 };
