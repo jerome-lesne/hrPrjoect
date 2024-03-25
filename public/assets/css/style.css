@@ -23,6 +23,8 @@ header {
 
 nav {
     padding: 10px 0;
+    font-family: "Archivo Black", sans-serif;
+    font-weight: bold;
 }
 
 nav ul {
@@ -70,6 +72,10 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+label {
+    font-family: "Archivo Black", sans-serif;
 }
 
 #welcome {
@@ -407,6 +413,15 @@ h2 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
+    color: white;
+}
+
+#noEmployee {
+    font-size: 2em;
+}
+
+#noEmployee a:visited {
+    color: blue;
 }
 
 .employee {

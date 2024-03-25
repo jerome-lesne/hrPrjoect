@@ -5,6 +5,7 @@ const fs = require("fs");
 const setEmployee = async (req, res) => {
     try {
         const companyId = req.session.company._id;
+        if (req.errorMulter) throw { errorImage: req.errorMulter };
         if (companyId) {
             const newEmployee = new employeeModel(req.body);
             newEmployee.blames = 0;
@@ -24,6 +25,7 @@ const setEmployee = async (req, res) => {
     } catch (e) {
         res.render("addEmployee/index.html.twig", {
             error: e,
+            errorMulter: req.errorMulter,
             authguard: true,
         });
     }
