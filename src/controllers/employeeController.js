@@ -23,7 +23,8 @@ const setEmployee = async (req, res) => {
         }
     } catch (e) {
         res.render("addEmployee/index.html.twig", {
-            error: e.errors,
+            error: e,
+            authguard: true,
         });
     }
 };
@@ -98,7 +99,6 @@ const updateEmployee = async (req, res) => {
         res.redirect("/dashboard");
     } catch (e) {
         console.log("error");
-        res.send(e);
     }
 };
 

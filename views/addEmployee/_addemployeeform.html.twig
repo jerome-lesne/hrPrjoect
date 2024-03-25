@@ -7,14 +7,14 @@
             <label for="image">Picture</label>
             <input type="file" name="image" id="employeeImage" value="">
             {% if error %}
-                <p>error</p>
+            <p>{{error.errors.image}}</p>
             {% endif %}
         </div>
         <div>
             <label for="name">Name</label>
             <input type="text" name="name" id="employeeName" value="">
             {% if error %}
-                <p>error</p>
+            <p>{{error.errors.name}}</p>
             {% endif %}
         </div>
         <div>
@@ -26,11 +26,11 @@
                 {% endfor %}
             </datalist>
             {% if error %}
-                <p>error</p>
+            <p>{{error.errors.role}}</p>
             {% endif %}
         </div>
         <div>
-            <input id="submitBtn" type="submit" value="Submit" />
+            <input class="submitBtn" type="submit" value="Submit" />
         </div>
     </form>
 </div>

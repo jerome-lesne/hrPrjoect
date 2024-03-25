@@ -382,6 +382,10 @@ h2 {
     justify-content: center;
 }
 
+#addEmployeeForm p {
+    color: red;
+}
+
 .submitBtn {
     width: 100%;
     padding: 10px;

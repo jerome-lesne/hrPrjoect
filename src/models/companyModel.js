@@ -36,7 +36,20 @@ const companySchema = new mongoose.Schema({
     ],
 });
 
-companySchema.pre("save", function(next) {
+companySchema.pre("save", function (next) {
+    if (!this.isModified("password")) {
+        return next();
+    }
+    bcrypt.hash(this.password, 10, (error, hash) => {
+        if (error) {
+            return next(error);
+        }
+        this.password = hash;
+        next();
+    });
+});
+
+companySchema.pre("updateOne", function (next) {
     if (!this.isModified("password")) {
         return next();
     }
