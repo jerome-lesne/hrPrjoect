@@ -104,7 +104,6 @@ const updateEmployee = async (req, res) => {
         res.redirect("/dashboard");
     } catch (e) {
         res.send(e);
-        console.log(e);
     }
 };
 
@@ -122,6 +121,7 @@ const roleFilter = async (req, res) => {
                 new Set(company.employees.map((employee) => employee.role)),
             ),
             authguard: true,
+            company: await companyModel.findById(req.session.company._id),
         });
     } catch (e) {
         res.send(e);
