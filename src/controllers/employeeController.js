@@ -87,21 +87,24 @@ const deleteEmployee = async (req, res) => {
 const updateEmployee = async (req, res) => {
     try {
         let data = req.body;
-        let imgPath = req.file.path;
-        imgPath = imgPath.substring(imgPath.indexOf("/"));
-        data.image = imgPath;
-        const employee = await employeeModel.findOne({
-            _id: req.params.id,
-        });
-        fs.unlink("public" + employee.image, (err) => {
-            err
-                ? console.log(err)
-                : console.log(`Employee id: ${employee.id}, image deleted`);
-        });
+        if (req.file) {
+            let imgPath = req.file.path;
+            imgPath = imgPath.substring(imgPath.indexOf("/"));
+            data.image = imgPath;
+            const employee = await employeeModel.findOne({
+                _id: req.params.id,
+            });
+            fs.unlink("public" + employee.image, (err) => {
+                err
+                    ? console.log(err)
+                    : console.log(`Employee id: ${employee.id}, image deleted`);
+            });
+        }
         await employeeModel.updateOne({ _id: req.params.id }, data);
         res.redirect("/dashboard");
     } catch (e) {
-        console.log("error");
+        res.send(e);
+        console.log(e);
     }
 };
 
