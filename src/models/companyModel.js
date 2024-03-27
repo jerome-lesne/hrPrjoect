@@ -9,6 +9,12 @@ const companySchema = new mongoose.Schema({
     siret: {
         type: Number,
         required: [true, "Siret is required"],
+        validate: {
+            validator: (v) => {
+                return /^\d{14}$/g.test(v);
+            },
+            message: "Please enter a valid SIRET (14 digit)",
+        },
     },
     ceo: {
         type: String,
@@ -27,6 +33,12 @@ const companySchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Password is required"],
+        validate: {
+            validator: (v) => {
+                return /.{8,}/g.test(v);
+            },
+            message: "Please insert a password of at least 8 characters",
+        },
     },
     employees: [
         {
